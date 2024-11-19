@@ -34,6 +34,7 @@ func Execute() {
 
 func init() {
 	rootCmd.Flags().BoolVarP(&verFlag, "version", "v", false, "get the current installed CLI version")
+	rootCmd.CompletionOptions.HiddenDefaultCmd = true
 }
 
 func checkRoot(cmd *cobra.Command, args []string) {

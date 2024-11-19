@@ -13,7 +13,7 @@ var (
 
 var runCmd = &cobra.Command{
 	Use:   "run",
-	Short: "starts a policy run",
+	Short: "Starts a policy run",
 	Long: `
 Starts an Addigy policy run. Must be run as root (sudo).
 Without flags, it will only let you know the policy run has started.

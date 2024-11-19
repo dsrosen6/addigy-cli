@@ -8,7 +8,7 @@ import (
 
 var resetCmd = &cobra.Command{
 	Use:   "reset",
-	Short: "resets policy progress",
+	Short: "Resets policy progress",
 	Long: `
 Resets all Addigy policy progress. Must be run as root (sudo).
 

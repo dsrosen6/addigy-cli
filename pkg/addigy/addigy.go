@@ -94,3 +94,24 @@ func PolicierInstall(item string) error {
 
 	return commandWithOutput(c)
 }
+
+// PolicierInstallWithSpinner installs an item using the policier, but with a spinner.
+func PolicierInstallWithSpinner(item string) error {
+	c := command{
+		mainCommand: goAgent,
+		args:        []string{"policier", "install", item},
+	}
+
+	action := func() {
+		err := commandWithoutOutput(c)
+		if err != nil {
+			fmt.Println("Error installing software: ", err)
+			return
+		}
+	}
+
+	_ = spinner.New().Type(spinner.Line).Style(spinnerTheme).Title(" Installing software...this may take a few minutes.").Action(action).Run()
+
+	fmt.Println("Software installed.")
+	return nil
+}
