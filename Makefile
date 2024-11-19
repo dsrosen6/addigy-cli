@@ -1,9 +1,9 @@
 
 run:
-	go run cmd/main/main.go
+	go run main.go
 
 build:
-	go build -o bin/addigy cmd/main/main.go
+	go build -o bin/addigy main.go
 
 build-move:
-	go build -o /usr/local/bin/addigy cmd/main/main.go && chmod +x /usr/local/bin/addigy
+	go build -o /usr/local/bin/addigy main.go && chmod +x /usr/local/bin/addigy

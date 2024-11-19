@@ -1,8 +1,8 @@
 package addigy
 
 import (
-	"errors"
 	"fmt"
+	"github.com/charmbracelet/lipgloss"
 	"os"
 
 	"github.com/charmbracelet/huh/spinner"
@@ -12,7 +12,10 @@ const (
 	addigyFolder = "/Library/Addigy/"
 	goAgent      = addigyFolder + "go-agent"
 	statusPath   = addigyFolder + "ansible/status.json"
+	addigyBlue   = "#00C7CC"
 )
+
+var spinnerTheme = lipgloss.NewStyle().Foreground(lipgloss.Color(addigyBlue))
 
 type command struct {
 	mainCommand string
@@ -36,10 +39,14 @@ func PolicierRunWithSpinner() error {
 	c := policierRunCommand
 
 	action := func() {
-		commandWithoutOutput(c)
+		err := commandWithoutOutput(c)
+		if err != nil {
+			fmt.Println("Error running Addigy Policy: ", err)
+			return
+		}
 	}
 
-	spinner.New().Type(spinner.Line).Title(" Running Addigy Policy...this may take a few minutes, or more.").Action(action).Run()
+	_ = spinner.New().Type(spinner.Line).Style(spinnerTheme).Title(" Running the Addigy Policy...this may take a few minutes.").Action(action).Run()
 
 	fmt.Println("Addigy Policy run complete.")
 	return nil
@@ -52,7 +59,7 @@ func PolicierRun() error {
 		args:        []string{"start", "com.addigy.policier"},
 	}
 	if err := commandWithOutput(c); err != nil {
-		return errors.New("could not start policier - consider running in full verbose mode (sudo addigy run)")
+		return fmt.Errorf("could not start the Addigy policy: %w", err)
 	}
 
 	fmt.Println("Policy run started.")
