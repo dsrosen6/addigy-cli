@@ -2,12 +2,10 @@
 Addigy CLI is a command line tool to run Addigy-related commands from the terminal.
 
 ## Installation
-___
 To install, run the following command in the terminal:
 ```bash -c "$(curl -fsSL https://raw.githubusercontent.com/dsrosen6/addigy-cli/refs/heads/main/scripts/install.sh)"```
 
 ## Run
-___
 Starts an Addigy policy run. Must be run as root (sudo).  
 Without flags, it will only let you know the policy run has started.
 
@@ -24,7 +22,6 @@ Without flags, it will only let you know the policy run has started.
 `-v, --verbose`: run the policy with full verbose output. Cannot be used with --spinner.
 
 ## Reset
-___
 Resets all Addigy policy progress. Must be run as root (sudo).
 
 ### Example Use Cases
@@ -38,7 +35,6 @@ Resets all Addigy policy progress. Must be run as root (sudo).
 `-h, --help`: help for reset
 
 ## Install
-___
 Starts an Addigy software item installation. Must be run as root (sudo).  
 *To get the software item ID, navigate to the edit page for the software item in the Addigy web console.
 In the URL, the ID is everything after "edit/".*
