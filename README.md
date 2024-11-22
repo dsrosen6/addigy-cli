@@ -1,6 +1,11 @@
 # addigy-cli
 Addigy CLI is a command line tool to run Addigy-related commands from the terminal.
 
+## Installation
+___
+To install, run the following command in the terminal:
+```bash -c "$(curl -fsSL https://raw.githubusercontent.com/dsrosen6/addigy-cli/refs/tags/1.1.0/scripts/install.sh)"```
+
 ## Run
 ___
 Starts an Addigy policy run. Must be run as root (sudo).  

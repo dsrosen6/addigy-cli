@@ -12,7 +12,16 @@ else
 fi
 
 # Download the binary
-curl -L -o "$binaryPath" "$link"
+sudo curl -L -o "$binaryPath" "$link"
 
 # Make the binary executable
-chmod +x "$binaryPath"
+sudo chmod +x "$binaryPath"
+
+# Check if the binary was installed successfully
+if [ -f "$binaryPath" ]; then
+  echo "Addigy CLI installed successfully"
+  exit 0
+else
+  echo "Failed to install Addigy CLI"
+  exit 1
+fi
