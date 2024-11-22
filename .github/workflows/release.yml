@@ -31,4 +31,5 @@ jobs:
               files: |
                 addigy-cli-${{ github.event.release.tag_name }}-mac-intel
                 addigy-cli-${{ github.event.release.tag_name }}-mac-apple-silicon
-              token: ${{ secrets.GITHUB_TOKEN }}
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
