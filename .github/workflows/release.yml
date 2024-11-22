@@ -1,0 +1,34 @@
+# build intel and arm64 binaries and add to release on creation
+on:
+    release:
+        types: [created]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Set up Go
+          uses: actions/setup-go@v2
+          with:
+            go-version: 1.23.1
+
+        - name: Display the version of Go
+          run: go version
+
+        - name: Display the release tag
+          run: echo "Release tag is ${{ github.event.release.tag_name }}"
+
+        - name: Build for Intel Mac
+          run: GOOS=darwin GOARCH=amd64 go build -o addigy-cli-${{ github.event.release.tag_name }}-mac-intel
+
+        - name: Build for ARM64 Mac
+          run: GOOS=darwin GOARCH=arm64 go build -o addigy-cli-${{ github.event.release.tag_name }}-mac-apple-silicon
+
+        - name: Add binaries to release
+          uses: softprops/action-gh-release@v1
+          with:
+              files: |
+                addigy-cli-${{ github.event.release.tag_name }}-mac-intel
+                addigy-cli-${{ github.event.release.tag_name }}-mac-apple-silicon
+              token: ${{ secrets.GITHUB_TOKEN }}
