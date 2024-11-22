@@ -7,22 +7,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const version = "1.1.0"
-
-var verFlag bool
-
 var rootCmd = &cobra.Command{
 	Use:   "addigy",
 	Short: "A CLI tool for Addigy",
 	Long:  `Addigy CLI is a command line tool to run Addigy-related commands from the terminal.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		if verFlag {
-			fmt.Println(version)
-			return
-		} else {
-			_ = cmd.Help()
-		}
-	},
 }
 
 func Execute() {
@@ -33,7 +21,6 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().BoolVarP(&verFlag, "version", "v", false, "get the current installed CLI version")
 	rootCmd.CompletionOptions.HiddenDefaultCmd = true
 }
 

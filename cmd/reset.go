@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/dsrosen6/addigy-command/pkg/addigy"
+	"github.com/dsrosen6/addigy-command/addigy"
 	"github.com/spf13/cobra"
 	"os"
 )
@@ -19,7 +19,7 @@ Example Use Cases:
 	PersistentPreRun: checkRoot,
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := addigy.ResetPolicyProgress(); err != nil {
-			cmd.PrintErrln("Error resetting policy progress: ", err)
+			cmd.PrintErrln("Error: ", err)
 			os.Exit(1)
 		}
 	},

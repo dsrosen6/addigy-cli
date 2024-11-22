@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/dsrosen6/addigy-command/pkg/addigy"
+	"github.com/dsrosen6/addigy-command/addigy"
 	"github.com/spf13/cobra"
 	"os"
 )
@@ -31,23 +31,23 @@ Example Use Cases:
 		}
 
 		if spinner {
-			if err := addigy.PolicierRunWithSpinner(); err != nil {
-				cmd.PrintErrln("Error running Addigy Policy: ", err)
+			if err := addigy.PolicierRun("spinner"); err != nil {
+				cmd.PrintErrln("Error: ", err)
 				os.Exit(1)
 			}
 			return
 		}
 
 		if verbose {
-			if err := addigy.PolicierRunVerbose(); err != nil {
-				cmd.PrintErrln("Error running Addigy Policy: ", err)
+			if err := addigy.PolicierRun("verbose"); err != nil {
+				cmd.PrintErrln("Error: ", err)
 				os.Exit(1)
 			}
 			return
 		}
 
-		if err := addigy.PolicierRun(); err != nil {
-			cmd.PrintErrln("Error running Addigy policy: ", err)
+		if err := addigy.PolicierRun("default"); err != nil {
+			cmd.PrintErrln("Error: ", err)
 			os.Exit(1)
 		}
 		return
