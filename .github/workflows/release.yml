@@ -20,16 +20,16 @@ jobs:
           run: echo "Release tag is ${{ github.event.release.tag_name }}"
 
         - name: Build for Intel Mac
-          run: GOOS=darwin GOARCH=amd64 go build -o addigy-cli-${{ github.event.release.tag_name }}-mac-intel
+          run: GOOS=darwin GOARCH=amd64 go build -o addigy-cli-intel
 
         - name: Build for ARM64 Mac
-          run: GOOS=darwin GOARCH=arm64 go build -o addigy-cli-${{ github.event.release.tag_name }}-mac-apple-silicon
+          run: GOOS=darwin GOARCH=arm64 go build -o addigy-cli-apple-silicon
 
         - name: Add binaries to release
           uses: softprops/action-gh-release@v1
           with:
               files: |
-                addigy-cli-${{ github.event.release.tag_name }}-mac-intel
-                addigy-cli-${{ github.event.release.tag_name }}-mac-apple-silicon
+                addigy-cli-intel
+                addigy-cli-apple-silicon
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
