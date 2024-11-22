@@ -4,7 +4,7 @@ Addigy CLI is a command line tool to run Addigy-related commands from the termin
 ## Installation
 ___
 To install, run the following command in the terminal:
-```bash -c "$(curl -fsSL https://raw.githubusercontent.com/dsrosen6/addigy-cli/refs/tags/1.1.0/scripts/install.sh)"```
+```bash -c "$(curl -fsSL https://raw.githubusercontent.com/dsrosen6/addigy-cli/refs/heads/main/scripts/install.sh)"```
 
 ## Run
 ___
