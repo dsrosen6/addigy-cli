@@ -19,7 +19,8 @@ Example Use Cases:
 - You want to install a software item from the command line instead of from the Addigy web console.
 - For installation from within another script or automation.
 `,
-	Args: cobra.ExactArgs(1),
+	Args:             cobra.ExactArgs(1),
+	PersistentPreRun: checkRoot,
 	Run: func(cmd *cobra.Command, args []string) {
 		softwareId = args[0]
 		if spinner {

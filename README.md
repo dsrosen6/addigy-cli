@@ -1,24 +1,50 @@
-# addigy-command
-This is a command line helper for various Addigy terminal commands - these are all commands that can already be run via commands in the Addigy admin panel, but if you are in a situation where it might make more sense to run it via terminal on a user's computer, this can help reduce the need to type out complex commands or filepaths. 
+# addigy-cli
+Addigy CLI is a command line tool to run Addigy-related commands from the terminal.
 
-## Usage
-Commands must be run as root, or with `sudo` - options are as follows.
+## Run
+___
+Starts an Addigy policy run. Must be run as root (sudo).  
+Without flags, it will only let you know the policy run has started.
 
-### Menu
-Simply running `addigy` will pull up an interactive menu that lets you select from one of the following commands.
+### Example Use Cases
+- You want to start a policy run without waiting for the next scheduled run.
+- You want confirmation that the policy run has started and finished (with verbose or spinner flags).
+- You just deployed a new software item and want to make sure it runs ASAP on this specific Mac.
 
-### Run
-`addigy run`: Run the Addigy policy. Without arguments, this will start the policy with no progress spinner.  
-`-s, --spinner`: Run the Addigy policy with a progress spinner, which stops when the policy run is complete.  
-`-v, --verbose`: Run the Addigy policy with full verbose output.
+### Usage
+`addigy run [flags]`
 
-### Reset
-`addigy reset`: Reset the progress of all Addigy policy items. Use as a "flush" if you need to reset the progress of all policy items, but time is not of the essence.
+### Flags
+`-s, --spinner`: run the policy with a spinner. Cannot be used with --verbose.  
+`-v, --verbose`: run the policy with full verbose output. Cannot be used with --spinner.
 
-### Full Reset
-`addigy full-reset`: Reset the Addigy policy progress (reset), and run the policy (run). Policy will run without a spinner.  
-`-s, --spinner`: Policy will run with a progress spinner (`run -f`).  
-`-v, --verbose`: Policy will run with full verbose output (`run -v`).  
+## Reset
+___
+Resets all Addigy policy progress. Must be run as root (sudo).
 
-### Help
-`-h, --help, help` Show the help message (includes all of the above)
+### Example Use Cases
+- You want Addigy to re-run any "run once" software items (those without condition scripts).
+- There are software items that are stuck in a pending state which won't change after a policy run.
+
+### Usage 
+`addigy reset [flags]`
+
+### Flags 
+`-h, --help`: help for reset
+
+## Install
+___
+Starts an Addigy software item installation. Must be run as root (sudo).  
+*To get the software item ID, navigate to the edit page for the software item in the Addigy web console.
+In the URL, the ID is everything after "edit/".*
+
+### Example Use Cases
+- You want to install a software item from the command line instead of from the Addigy web console.
+- For installation from within another script or automation.
+
+### Usage
+`addigy install [id]`
+
+### Flags  
+`-h, --help`: help for install  
+`-s, --spinner`: install the software with a spinner instead of full output
